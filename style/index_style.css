@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    margin: 0;
+}
+
+header {
+    background-color: #93a8ac;
+    height: 4.5em;
+}
+
+header>img {
+    height: 90%;
+    float: left;
+    margin-top: .2rem;
+    margin-left: .5rem;
+    margin-right: 1rem;
+}
+
+h3>span {
+    color: #533753;
+}
+
+header>div>* {
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+    font-style: italic;
+
+}
+
+#slogan {
+    float: left;
+    margin: 1em, 1, 1rem, 1rem;
+}
+
+#login {
+    float: right;
+    margin-top: 1.5rem;
+    margin-right: 2.5rem;
+}
+
+#login:hover {
+    text-decoration: underline;
+}
