@@ -1,0 +1,99 @@
+
+html,
+body, .root{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+body{
+    align-items: center;
+    font-size: 16px;
+    background: linear-gradient(-100deg, #A9D9EF 0%, #75C2E6 100%);
+}
+
+*{
+    font-family:system-ui;
+}
+
+.container {
+    max-width: 32rem;
+    display: list-item;
+    justify-content: space-between;
+    background-color: white;
+    border: transparent;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+    list-style: none;
+}
+
+header{
+    padding-top: 30px;
+    padding-left: 20px;
+    background-color: transparent;
+}
+
+header.h1{
+    font-style: unset;
+    background-color: white;
+}
+
+header.p{
+    size: 18px;
+    color: #848694;
+    background-color: white;
+}
+
+main{
+    background: transparent;
+    height: 45%;
+    width: content-box;
+    display: block;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 20px;
+    padding-bottom: 0px;
+    border: 5px transparent;
+}
+
+#email, #username, #password, #confirm-password{
+    width: 100%;
+    height: 85%;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom-color: #00000069;
+    border-bottom-style: inset;
+    border-bottom-width: thin;
+    border-radius: 4px;
+    background: transparent;
+    outline: none;
+    padding: 1rem.5rem;
+    margin-bottom: 7px;
+    box-sizing: border-box;
+}
+
+#createUserBtn{
+    color: #75C2E6;
+    height: 30px;
+    border: transparent;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 30px;
+    background-color: #75C2E6;
+    color: white;
+    font-size: 20px;
+    max-width: 10rem;
+    width: 110px;
+    height: 35px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 300px;
+    margin-right: 50px;
+}
+
+.headerElements h1{
+    font-weight: lighter
+}
