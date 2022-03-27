@@ -1,51 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300&display=swap');
 
-html {
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body {
-    background-color: #fff;
-    margin: 0;
-}
 
 header {
-    background-color: #93a8ac;
-    height: 4.5em;
+    height: 3.5em;
+    border-bottom: 2px #CEB5A7 solid;
 }
 
-header>img {
+#logo {
     height: 90%;
-    float: left;
     margin-top: .2rem;
     margin-left: .5rem;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
-h3>span {
-    color: #533753;
-}
-
-header>div>* {
-    margin: auto;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-family: 'Roboto Condensed', sans-serif;
-    color: #fff;
-    font-style: italic;
-
-}
-
-#slogan {
+.slogan>* {
     float: left;
-    margin: 1em, 1, 1rem, 1rem;
+    margin-top: .3rem;
+    margin-right: 1.5rem;
 }
 
-#login {
+ul {
+    list-style-type: none;
+}
+
+a, a:visited {
+    color: #7F675B;
+    text-decoration: none;
+}
+
+h1 {
+    color: #7F675B;
+    font-family: 'Lato', sans-serif;
+}
+
+h2, h3, p, span {
+    color: #7F675B;
+    font-family: 'Roboto', sans-serif;
+}
+
+.flex {
+    text-align: center;
+    display: block;
+    justify-content: right;
+    align-items: align-self;
+}
+
+.flex a {
     float: right;
-    margin-top: 1.5rem;
-    margin-right: 2.5rem;
+    padding: .5em;
+    margin: .5em;
+    font-family: 'Roboto', sans-serif;
 }
 
-#login:hover {
-    text-decoration: underline;
+.flex a:hover {
+    border-bottom: 2px #7F675B solid;
+}
+
+.introduction-section h1 {
+    margin: 1.5em;
+}
+
+.introduction-section h2 {
+    margin: 1.5em, 1em;
+}
+
+.features {
+    margin: 10em;
+}
+
+.features h1 {
+    text-align: center;
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    margin: 3em;
+}
+
+.features img {
+    width: 200px;
+    height: 200px;
+}
+.caption {
+    display: block;
 }
