@@ -62,24 +62,38 @@ h2, h3, p, span {
     border-bottom: 2px #7F675B solid;
 }
 
-.introduction-section h1 {
-    margin: 1.5em;
+div.introduction-section {
+
+    vertical-align: text-top;
+    display: inline-block;
+    width: 40%;
+    margin-top: 5em;
+    margin-left: 8em;
+    margin-bottom: 3em;
 }
 
-.introduction-section h2 {
-    margin: 1.5em, 1em;
+div.introduction-section > h1 {
+    font-size: 60px;
+    margin-bottom: 1em;
+
+}
+
+div.introduction-section img {
+    width: 400px;
+    justify-content: right;
+    clear: both;
 }
 
 .features {
-    margin: 10em;
+    margin: 5em;
 }
 
 .features h1 {
     text-align: center;
+    font-size: 50px;
 }
 
 div.item {
-    vertical-align: top;
     display: inline-block;
     text-align: center;
     width: 200px;
@@ -90,6 +104,8 @@ div.item {
     width: 200px;
     height: 200px;
 }
+
 .caption {
+    font-size: 20px;
     display: block;
 }
