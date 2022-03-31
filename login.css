@@ -9,8 +9,7 @@ body, .root{
 body{
     align-items: center;
     font-size: 16px;
-    background: linear-gradient(-100deg, #A9D9EF 0%, #75C2E6 100%);
-
+    background: linear-gradient(-100deg, #FE975A 0%, #F15064 100%);
 }
 
 *{
@@ -23,15 +22,32 @@ body{
     justify-content: space-between;
     background-color: white;
     border: transparent;
-    border-radius: 20px;
-    width: 90%;
-    height: auto;
+    border-radius: 2px;
+    width: 100%;
+    height: 30rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.doodle {
+    max-width: 32rem;
+    display: list-item;
+    justify-content: space-between;
+    background-color: white;
+    border: transparent;
+    border-radius: 2px;
+    width: 100%;
+    height: 30rem;
     list-style: none;
 }
 
+.headerElements h1{
+    font-weight: lighter;
+}
+
 header{
-    padding-top: 30px;
-    padding-left: 20px;
+    padding-top: 20%;
+    padding-left: 10%;
     background-color: transparent;
 }
 
@@ -53,7 +69,7 @@ main{
     display: block;
     justify-content: space-between;
     align-items: stretch;
-    padding: 20px;
+    padding: 10%;
     padding-bottom: 0px;
     border: 5px transparent;
 }
@@ -71,7 +87,7 @@ main{
     background: transparent;
     outline: none;
     padding: 1rem.5rem;
-    margin-bottom: 7px;
+    margin-bottom: 5%;
     box-sizing: border-box;
 }
 #password{
@@ -88,29 +104,29 @@ main{
     outline: none;
     padding: 1rem.5rem;
     box-sizing: border-box;
-    margin-bottom: 7px;
+    margin-bottom: 5%;
 }
 
 #submitBtn{
-    font-size: 20px;
+    font-size: 120%;
     color: white;
     max-width: 10rem;
-    width: 110px;
-    height: 35px;
+    width: 37%;
     border: transparent;
-    border-radius: 30px;
-    background-color: #75C2E6;
-    margin-top: 30px;
-    margin-left: 200px;
-    margin-right: 50px;
+    background: linear-gradient(-100deg, #FE975A 0%, #F15064 100%);
+    margin-top: 23%;
+    margin-left: 65%;
+    margin-right: 10%;
+    padding: 2%;
 }
 
 #createBtn{
-    color: #75C2E6;
-    margin-bottom: 40px;
-    height: 30px;
+    color: #F15064;
+    margin-bottom: 20%;
+    height: 30%;
     border: transparent;
     background-color: transparent;
-    margin-top: 20px;
-    margin-left: 223px;
+    margin-top: 7%;
+    margin-left: 65%;
+    margin-right: 10%;
 }

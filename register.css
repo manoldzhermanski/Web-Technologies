@@ -1,4 +1,3 @@
-
 html,
 body, .root{
     height: 100%;
@@ -10,28 +9,48 @@ body, .root{
 body{
     align-items: center;
     font-size: 16px;
-    background: linear-gradient(-100deg, #A9D9EF 0%, #75C2E6 100%);
+    background: linear-gradient(-100deg, #FE975A 0%, #F15064 100%);
 }
 
 *{
-    font-family:system-ui;
+    font-family: Helvetica, sans-serif;
 }
 
+.root{
+    width: 80%;
+}
 .container {
     max-width: 32rem;
     display: list-item;
     justify-content: space-between;
     background-color: white;
     border: transparent;
-    border-radius: 20px;
-    width: 90%;
-    height: auto;
+    border-radius: 2px;
+    width: 100%;
+    height: 30rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.doodle {
+    max-width: 32rem;
+    display: list-item;
+    justify-content: space-between;
+    background-color: white;
+    border: transparent;
+    border-radius: 2px;
+    width: 100%;
+    height: 30rem;
     list-style: none;
 }
 
+.headerElements h1{
+    font-weight: lighter;
+}
+
 header{
-    padding-top: 30px;
-    padding-left: 20px;
+    padding-top: 10%;
+    padding-left: 10%;
     background-color: transparent;
 }
 
@@ -53,14 +72,15 @@ main{
     display: block;
     justify-content: space-between;
     align-items: stretch;
-    padding: 20px;
+    padding: 10%;
     padding-bottom: 0px;
+    padding-top: 5%;
     border: 5px transparent;
 }
 
-#email, #username, #password, #confirm-password{
+.inputData{
     width: 100%;
-    height: 85%;
+    height: 65%;
     border-top: transparent;
     border-left: transparent;
     border-right: transparent;
@@ -71,29 +91,20 @@ main{
     background: transparent;
     outline: none;
     padding: 1rem.5rem;
-    margin-bottom: 7px;
+    margin-bottom: 3%;
     box-sizing: border-box;
 }
 
 #createUserBtn{
-    color: #75C2E6;
-    height: 30px;
-    border: transparent;
-    background-color: transparent;
-    border: transparent;
-    border-radius: 30px;
-    background-color: #75C2E6;
+    font-size: 120%;
     color: white;
-    font-size: 20px;
     max-width: 10rem;
-    width: 110px;
-    height: 35px;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    margin-left: 300px;
-    margin-right: 50px;
+    width: 37%;
+    border: transparent;
+    background: linear-gradient(-100deg, #FE975A 0%, #F15064 100%);
+    margin-top: 12%;
+    margin-left: 53%;
+    margin-right: 10%;
+    padding: 2%;
 }
 
-.headerElements h1{
-    font-weight: lighter
-}
