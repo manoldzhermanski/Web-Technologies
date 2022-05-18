@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Start Drawing</title>
+    <link rel="stylesheet" href="style/draw.css">
+    <link rel="stylesheet" href="font-awesome\fontawesome-free-6.1.1-web\css\all.css">
+    <script src="js/draw.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <section id="header-wrapper">
+            <a href="index.html">
+                <h1 id="slogan">Cloud Paint</h1>
+            </a>
+        </section>
+    </header>
+    <main>
+        <section class="functionality">
+            <nav>
+                <ul>
+                    <li>
+                        <label for="upload">
+                            <i class="fa-solid fa-upload"></i> </label>
+                        <input id="upload" type="file" accept="image/*"/>
+
+                    </li>
+                    <li><i class="fa-solid fa-pen" onclick="pen()"></i></li>
+                    <li><i class="fa-solid fa-magnifying-glass" onclick="zoomIn()" oncontextmenu="zoomOut()"></i></li>
+                    <li><i class="fa-solid fa-eraser" onclick="eraser()"></i></li>
+                    <li id="text"><i class="fa-solid fa-a" onclick="text()"></i></li>
+                    <li><i class="fa-solid fa-eye-dropper"></i></li>
+                    <li><i class="fa-solid fa-fill"></i></li>
+                    <li><i class="fa-solid fa-palette"></i></li>
+                </ul>
+            </nav>
+        </section>
+        <section id="draw">
+            <canvas id="canvas" width="1336px" height="658px" style="border:1px solid #000000"></canvas>
+        </section>
+    </main>
+
+
+</body>
+
+</html>

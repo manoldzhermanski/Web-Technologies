@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    resize: both;
+}
+
+h1 {
+    font-size: 2vw;
+    color: #633107;
+    font-family: 'Lato', sans-serif;
+}
+
+h2, h3, p, span {
+    font-size: 1.5vw;
+    color: #633107;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a, a:visited {
+    color: #633107;
+    text-decoration: none;
+}
+
+#header-wrapper{
+	max-width: 100%;
+	padding: 2%;
+}
+
+header #header-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+    background-color: #fdf0d5;
+    border-bottom: 2px #CEB5A7 solid;
+}
+
+#slogan {
+	margin-top: .5em;
+	text-align: center;
+}
+
+main{
+    margin-top: 2%;
+}
+
+#draw{
+    text-align: center;
+}
+
+li{
+    margin: 1%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+#tmp_canvas {
+	position: absolute;
+	left: 0px; right: 0;
+	bottom: 0; top: 0;
+	cursor: crosshair;
+}
+
+#text_tool {
+	position: absolute;
+	border: 1px dashed black;
+	outline: 0;
+	display: none;
+	
+	font: 10px Verdana;
+	overflow: hidden;
+	white-space: nowrap;
+}
