@@ -17,31 +17,65 @@
         </section>
     </header>
     <main>
-        <section class="functionality">
-            <nav>
-                <ul>
-                    <li>
-                        <label for="upload">
-                            <i class="fa-solid fa-upload"></i> </label>
-                        <input id="upload" type="file" accept="image/*"/>
-
-                    </li>
-                    <li><i class="fa-solid fa-pen" onclick="pen()"></i></li>
-                    <li><i class="fa-solid fa-magnifying-glass" onclick="zoomIn()" oncontextmenu="zoomOut()"></i></li>
-                    <li><i class="fa-solid fa-eraser" onclick="eraser()"></i></li>
-                    <li id="text"><i class="fa-solid fa-a" onclick="text()"></i></li>
-                    <li><i class="fa-solid fa-eye-dropper"></i></li>
-                    <li><i class="fa-solid fa-fill"></i></li>
-                    <li><i class="fa-solid fa-palette"></i></li>
-                </ul>
-            </nav>
-        </section>
-        <section id="draw">
-            <canvas id="canvas" width="1336px" height="658px" style="border:1px solid #000000"></canvas>
-        </section>
+        <div id="drawing-area" class="drawing-area">
+            <div id="tools" class="tools">
+                <div id="drawing-tools" class="drawing-tools">
+                    <i id="pencilTool" class="pencil"></i>
+                    <i id="eraserTool" class="eraser"></i>
+                    <a class="selected" href="#" id="open" onclick="OpenImge()">
+                        <img src="media/drawing-icons/open-icon.png">
+                    </a>
+                    <a  href="#" id="save" onclick="SaveImge()">
+                        <img src="media/drawing-icons/save-icon.png">
+                    </a>
+                    <a  href="#" id="brush" onclick="ChangeTool('brush')">
+                        <img src="media/drawing-icons/brush-icon.png">
+                    </a>
+                    <a  href="#" id="line" onclick="ChangeTool('line')">
+                        <img src="media/drawing-icons/line-icon.png">
+                    </a>
+                    <a  href="#" id="rectangle" onclick="ChangeTool('rectangle')">
+                        <img src="media/drawing-icons/rectangle-icon.png">
+                    </a>
+                    <a  href="#" id="circle" onclick="ChangeTool('circle')">
+                        <img src="media/drawing-icons/circle-icon.png">
+                    </a>
+                    <a  href="#" id="ellipse" onclick="ChangeTool('ellipse')">
+                        <img src="media/drawing-icons/ellipse-icon.png">
+                    </a>
+                    <a  href="#" id="polygon" onclick="ChangeTool('polygon')">
+                        <img src="media/drawing-icons/polygon-icon.png">
+                    </a>
+                    <i id="btnUndo" class="undo"></i>
+                </div>
+                <div id="drawing-colors" class="drawing-colors">
+                    <div class="color-circle" data-color="white" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="black" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="red" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="green" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="orange" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="yellow" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="blue" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="purple" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="pink" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="brown" onclick="selectColor(this)"></div>
+                </div>
+                <div id="customColor" class="custamColor">
+                    <input type="color" name="cuscolor" id="cuscolor" value="#ff0000" onchange="customColor(this)">
+                    <label for="cuscolor">Edit colors</label>
+                </div>
+            </div>
+            <div id="pen-size" class="pen-size">
+                <input type="range" name="pen-size" id="pen-range" value="5" step="5" min="5" max="20" onchange="penSizeChange(this.value)">
+                <label for="pen-size"><i class="fa fa-pencil"></i>Pen size</label>
+            </div>
+            <div id="draw">
+                <canvas id="canvas" ></canvas>
+            </div>
+        </div>        
     </main>
 
-
+    <script src="js/draw2.js"></script>
 </body>
 
 </html>
