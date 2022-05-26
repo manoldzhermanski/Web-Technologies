@@ -20,26 +20,26 @@ const onRegister = (event) => {
     }
 }
 
-function saveUsersFromMongoDbToLocalStorage() {
+function saveUsersFromMongoDbToSessionStorage() {
     fetch('http://localhost:3002/users')
         .then((response) => response.json())
         .then((users) => {users
             if (users && users.length !== 0) {
                 users.map(user => {
-                if (!isLocalStorageAlreadyContainingUser(user.username)){
+                if (!isSessionStorageAlreadyContainingUser(user.username)){
                     let rand = Math.random() * 1000;
                     let uniqueKey = "user" + Math.floor(rand);
-                    localStorage.setItem(uniqueKey, JSON.stringify(user));  
+                    sessionStorage.setItem(uniqueKey, JSON.stringify(user));  
                 }
                 })
             }
         })
 }
 
-const isLocalStorageAlreadyContainingUser = (username) => {
-    for (const key of Object.keys(localStorage)) {
+const isSessionStorageAlreadyContainingUser = (username) => {
+    for (const key of Object.keys(sessionStorage)) {
         if(key.includes("user")){
-            let user = JSON.parse(localStorage.getItem(key));
+            let user = JSON.parse(sessionStorage.getItem(key));
             if(user.username === username){
                 return true;
             }
@@ -48,8 +48,8 @@ const isLocalStorageAlreadyContainingUser = (username) => {
     return false;
 }
 
-saveUsersFromMongoDbToLocalStorage();
-console.log(localStorage);
+saveUsersFromMongoDbToSessionStorage();
+console.log(sessionStorage);
 
 const sendUserData = (userData) => {
     const url = 'http://localhost:3002/register';
@@ -131,9 +131,9 @@ const isValidUserName = (usernameInput) => {
         return false;
     }
 
-    for (const key of Object.keys(localStorage)) {
+    for (const key of Object.keys(sessionStorage)) {
         if (key.includes("user")) {
-            let user = JSON.parse(localStorage.getItem(key));
+            let user = JSON.parse(sessionStorage.getItem(key));
             if (user.username === usernameInput) {
                 return false;
             }

@@ -6,12 +6,14 @@ const onSubmit = () => {
     let userInput = username.value.trim();
     let passwordInput = password.value.trim();
 
-    for (const [key, value] of Object.entries(localStorage)) {
+    for (const [key, value] of Object.entries(sessionStorage)) {
         if(key.includes("user")){
-            let user = JSON.parse(localStorage.getItem(key));
-            if(user.username === userInput) {
+            let user = JSON.parse(sessionStorage.getItem(key));
+            if(user.username == userInput) {
+                console.log(user.username);
+                console.log(userInput);
                 if (passwordInput === user.password){
-                    location.href='index.html';
+                    location.href='draw.html';
                 } else {
                     toggleModal(true, "Invalid password.");
                 }
@@ -28,20 +30,20 @@ function saveUsersFromMongoDbToLocalStorage() {
         .then((users) => {users
             if (users && users.length !== 0) {
                 users.map(user => {
-                if (!isLocalStorageAlreadyContainingUser(user.username)){
+                if (!isSessionStorageAlreadyContainingUser(user.username)){
                     let rand = Math.random() * 1000;
                     let uniqueKey = "user" + Math.floor(rand);
-                    localStorage.setItem(uniqueKey, JSON.stringify(user));  
+                    sessionStorage.setItem(uniqueKey, JSON.stringify(user));  
                 }
                 })
             }
         })
 }
 
-const isLocalStorageAlreadyContainingUser = (username) => {
-    for (const key of Object.keys(localStorage)) {
+const isSessionStorageAlreadyContainingUser = (username) => {
+    for (const key of Object.keys(sessionStorage)) {
         if(key.includes("user")){
-            let user = JSON.parse(localStorage.getItem(key));
+            let user = JSON.parse(sessionStorage.getItem(key));
             if(user.username === username){
                 return true;
             }
@@ -51,7 +53,7 @@ const isLocalStorageAlreadyContainingUser = (username) => {
 }
 
 saveUsersFromMongoDbToLocalStorage();
-
+console.log(localStorage);
 const toggleModal = (open, msg) => {
     let dialogBackground = document.getElementById("dialog-background");
     let dialog = document.getElementById("dialog");
