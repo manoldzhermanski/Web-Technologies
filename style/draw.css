@@ -1,31 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    resize: both;
-}
 
 h1 {
     font-size: 2vw;
     color: #633107;
     font-family: 'Lato', sans-serif;
-}
-
-h2, h3, p, span {
-    font-size: 1.5vw;
-    color: #633107;
-    font-family: 'Roboto', sans-serif;
-}
-
-ul {
-    list-style-type: none;
-}
-
-a, a:visited {
-    color: #633107;
-    text-decoration: none;
 }
 
 #header-wrapper{
@@ -43,41 +21,196 @@ header #header-wrapper {
 }
 
 #slogan {
-	margin-top: .5em;
+	margin-top: 0.5em;
 	text-align: center;
 }
 
-main{
-    margin-top: 2%;
+main {
+    display: flex;
+    justify-content: center;
 }
 
-#draw{
+#drawing-area{
+    display: block;
+    border: 1px solid black;
+    margin-top: 10px;
+    height: 572px;
+    width: 700px;
+    background-color: white;
+    position: static;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#tools {
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: 70px;
+    height: 560px;
+    margin-top: 6px;
+    margin-left: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#drawing-tools {
+    border: 1px solid black;
+    height: 200px;
+    margin: 1.5px;
+
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content:flex-start
+}
+
+.drawing-tools a{
+    border: 1px solid black;
+    background-color: rgb(233, 175, 175);
+    border-radius: 5px;
+    height: 14px;
+    width: 14px;
+    margin: 2px;
+    padding: 5px;
+    transition: all 0.5s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.drawing-tools a:hoover{
+    background-color: black;
+}
+
+.selected{
+    background-color: black;
+}
+
+.drawing-tools a img {
+    width: 20px;
+}
+
+.pencil, .eraser, .undo {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 14px;
+    width: 14px;
+    margin: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.drawing-colors {
+    border: 1px solid black;
+    margin: 1.5px;
+    padding: 2px;
+    height: 200px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+
+}
+
+.color-circle {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 10px;
+    width: 10px;
+    margin: 2px;
+    padding: 5px;
+}
+
+.color-circle:nth-child(1) {
+    background-color: white;
+}
+
+.color-circle:nth-child(2) {
+    background-color: black;
+}
+
+.color-circle:nth-child(3) {
+    background-color: red;
+}
+
+.color-circle:nth-child(4) {
+    background-color: green;
+}
+
+.color-circle:nth-child(5) {
+    background-color: orange;
+}
+
+.color-circle:nth-child(6) {
+    background-color: yellow;
+}
+
+.color-circle:nth-child(7) {
+    background-color: blue;
+}
+
+.color-circle:nth-child(8) {
+    background-color: purple;
+}
+
+.color-circle:nth-child(9) {
+    background-color: pink;
+}
+
+.color-circle:nth-child(10) {
+    background-color: brown;
+}
+
+#customColor {
+    border: 1px solid black;
+    height: 70px;
+    padding: 2px;
+    margin: 1.5px;
+
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
-li{
-    margin: 1%;
+#cuscolor {
+    cursor: pointer;
 }
 
-input[type="file"] {
-    display: none;
+#pen-size {
+    border: 1px solid black;
+    height: 70px;
+    width: 400px;
+    margin-top: 6px;
+    
 }
 
-
-#tmp_canvas {
-	position: absolute;
-	left: 0px; right: 0;
-	bottom: 0; top: 0;
-	cursor: crosshair;
+#pen-range {
+    height: 30px;
+    width: 200px;
+    margin: 10px;
 }
 
-#text_tool {
-	position: absolute;
-	border: 1px dashed black;
-	outline: 0;
-	display: none;
-	
-	font: 10px Verdana;
-	overflow: hidden;
-	white-space: nowrap;
+#draw {
+    border: 1px solid black;
+
+    height: 480px;
+    width: 600px;
+    position: relative;
+    top: 14%;
+    right: 31%;
+}
+
+#canvas {
+    border: 1px solid black;
+    height: 480px;
+    width: 600px;
 }
