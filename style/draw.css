@@ -91,20 +91,9 @@ main {
     background-color: black;
 }
 
-.drawing-tools a img {
+.drawing-tools a img{
     width: 20px;
 }
-
-.pencil, .eraser, .undo {
-    border: 1px solid black;
-    border-radius: 5px;
-    height: 14px;
-    width: 14px;
-    margin: 2px;
-    padding: 5px;
-    cursor: pointer;
-}
-
 
 .drawing-colors {
     border: 1px solid black;
@@ -121,6 +110,39 @@ main {
 
 }
 
+.editPage {
+    border: 1px solid black;
+    margin: 1.5px;
+    padding: 2px;
+    height: 30px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.editPage a img{
+    width: 20px;
+}
+
+#undo, #redo {
+    border: 1px solid black;
+    background-color: rgb(233, 175, 175);
+    border-radius: 5px;
+    height: 14px;
+    width: 14px;
+    margin: 2px;
+    padding: 5px;
+    transition: all 0.5s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .color-circle {
     border: 1px solid black;
     border-radius: 5px;
@@ -128,6 +150,17 @@ main {
     width: 10px;
     margin: 2px;
     padding: 5px;
+}
+
+.clear {
+    border: 1px solid black;
+    margin: 1.5px;
+    padding: 2px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+    background-color:rgb(233, 175, 175);
+    border-radius: 7px;
 }
 
 .color-circle:nth-child(1) {
