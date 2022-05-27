@@ -105,7 +105,7 @@ function SaveCanvasImage(){
 function RedrawCanvasImage(){
     ctx.putImageData(pathArray[index], 0, 0); 
     //ctx.putImageData(savedImageData,0,0);
-
+}
  
 function UpdateRubberbandSizeData(loc){
     shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
@@ -328,5 +328,4 @@ function undoCurrent(){
         ctx.putImageData(pathArray[index], 0, 0);     
     }
     SaveCanvasImage();
-}
 }
