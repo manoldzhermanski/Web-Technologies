@@ -1,31 +1,29 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { join } = require("path");
-const path = require('path');
 const connectDb = require("./DBConnection.js");
 const UserSchema = require("./models/models.js");
 const app = express();
-app.use(express.json());
+const cors = require('cors')
 
-const cwd = process.cwd();
-const index_html = join(cwd, 'public' ,'register.html');
+app.use(cors({
+    origin: ['http://localhost:3000']
+}));
+
+app.use(express.json());
 
 connectDb()
     .then(() => {
         console.log('Database connection successful');
+
+        app.listen(3002, () => {
+            console.log(`Server is listening on port 3002`);
+        });
     })
     .catch((error) => console.error(`Database connection error: ${error}`));
 
-app.get('/', (request, response) => {
-  try {
-  response.sendFile('E:/WebTechnologies/CloudPaint/Web-Technologies/index.html');
-} catch (error) {
-  response.status(500).send(error);
-}
-});
-    
 app.get("/users", async (request, response) => {
   const users = await UserSchema.find({});
+
   try {
     response.send(users);
   } catch (error) {
@@ -33,15 +31,19 @@ app.get("/users", async (request, response) => {
   }
 });
 
-app.get("/register", (request, response) => {
+app.get("/users/:username", async (request, response) => {
+  const username = req.body.username;
+  const users = await UserSchema.find({});
+  const user = users.find(user => user.username == username);
   try {
-    response.sendFile('E:/WebTechnologies/CloudPaint/Web-Technologies/register.html');
+    response.send(user);
   } catch (error) {
     response.status(500).send(error);
   }
 });
 
 app.post('/register', async (req, res) => {
+  console.log(req.body);
       user = new UserSchema({
           username: req.body.username,
           email: req.body.email,
@@ -50,12 +52,6 @@ app.post('/register', async (req, res) => {
       });
       await user.save();
       res.send(user);
-      res.sendFile(index_html);
 });
-
 
 app.use(express.Router);
-
-app.listen(3000, () => {
-  console.log(`Server is listening on port 3000`);
-});

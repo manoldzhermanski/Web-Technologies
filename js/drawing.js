@@ -1,6 +1,4 @@
-
 const colorCircle = document.querySelectorAll(".color-circle")
-
 
 let canvas;
 let ctx;
@@ -8,6 +6,7 @@ let savedImageData;
 
 let dragging = false;
 let strokeColor = 'black';
+
 let fillColor = strokeColor;
 let line_Width = document.getElementById("pen-range").value;
 let polygonSides = 6;
@@ -21,7 +20,6 @@ let canvasHeight = canvas.scrollHeight;
 
 let pathArray = [];
 let index = -1;
-
 
 let usingBrush = false;
 
@@ -70,6 +68,7 @@ document.addEventListener('DOMContentLoaded', setupCanvas);
 function setupCanvas(){
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
+
     ctx.lineWidth = line_Width;
     //when the mouse is clicked
     canvas.addEventListener("mousedown", ReactToMouseDown);
@@ -106,7 +105,7 @@ function SaveCanvasImage(){
 function RedrawCanvasImage(){
     ctx.putImageData(pathArray[index], 0, 0); 
     //ctx.putImageData(savedImageData,0,0);
-}
+
  
 function UpdateRubberbandSizeData(loc){
     shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
@@ -174,7 +173,9 @@ function getPolygon(){
 function drawRubberbandShape(loc){
     ctx.strokeStyle = strokeColor;
     ctx.fillStyle = fillColor;
+  
     line_Width = document.getElementById("pen-range").value;
+  
     if(currentTool === "brush"){
         DrawBrush();
     } else if(currentTool === "line"){
@@ -327,5 +328,4 @@ function undoCurrent(){
         ctx.putImageData(pathArray[index], 0, 0);     
     }
     SaveCanvasImage();
-
 }
