@@ -1,16 +1,25 @@
+const colorCircle = document.querySelectorAll(".color-circle")
+
 let canvas;
 let ctx;
 let savedImageData;
 
 let dragging = false;
 let strokeColor = 'black';
-let fillColor = 'black';
-let line_Width = 2;
+
+let fillColor = strokeColor;
+let line_Width = document.getElementById("pen-range").value;
 let polygonSides = 6;
 
 let currentTool = 'brush';
-let canvasWidth = 600;
-let canvasHeight = 600;
+
+
+canvas = document.getElementById('canvas');
+let canvasWidth = canvas.scrollWidth;
+let canvasHeight = canvas.scrollHeight;
+
+let pathArray = [];
+let index = -1;
 
 let usingBrush = false;
 
@@ -57,9 +66,9 @@ let loc = new Location(0,0);
 document.addEventListener('DOMContentLoaded', setupCanvas);
  
 function setupCanvas(){
-    canvas = document.getElementById('my-canvas');
+    canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
-    ctx.strokeStyle = strokeColor;
+
     ctx.lineWidth = line_Width;
     //when the mouse is clicked
     canvas.addEventListener("mousedown", ReactToMouseDown);
@@ -68,7 +77,6 @@ function setupCanvas(){
 }
  
 function ChangeTool(toolClicked){
-    document.getElementById("open").className = "";
     document.getElementById("save").className = "";
     document.getElementById("brush").className = "";
     document.getElementById("line").className = "";
@@ -90,11 +98,14 @@ function GetMousePosition(x,y){
  
 function SaveCanvasImage(){
     savedImageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    pathArray.push(savedImageData);
+    index += 1;
 }
  
 function RedrawCanvasImage(){
-    ctx.putImageData(savedImageData,0,0);
-}
+    ctx.putImageData(pathArray[index], 0, 0); 
+    //ctx.putImageData(savedImageData,0,0);
+
  
 function UpdateRubberbandSizeData(loc){
     shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
@@ -162,6 +173,9 @@ function getPolygon(){
 function drawRubberbandShape(loc){
     ctx.strokeStyle = strokeColor;
     ctx.fillStyle = fillColor;
+  
+    line_Width = document.getElementById("pen-range").value;
+  
     if(currentTool === "brush"){
         DrawBrush();
     } else if(currentTool === "line"){
@@ -204,7 +218,6 @@ function AddBrushPoint(x, y, mouseDown){
 function DrawBrush(){
     for(let i = 1; i < brushXPoints.length; i++){
         ctx.beginPath();
-
         if(brushDownPos[i]){
             ctx.moveTo(brushXPoints[i-1], brushYPoints[i-1]);
         } else {
@@ -260,7 +273,7 @@ function ReactToMouseUp(e){
 }
 
 function SaveImage(){
-    var imageFile = document.getElementById("img-file");
+    var imageFile = document.getElementById("save");
     imageFile.setAttribute('download', 'image.png');
     imageFile.setAttribute('href', canvas.toDataURL());
 }
@@ -272,4 +285,47 @@ function OpenImage(){
         ctx.drawImage(img,0,0);
     }
     img.src = 'image.png';
+}
+
+
+const selectColor = (elem) => {
+
+    removeActiveCircleColor();
+
+    strokeColor = elem.getAttribute("data-color");
+    elem.classList.add("active")
+}
+
+const removeActiveCircleColor = () => {
+    colorCircle.forEach((circle) => {
+        circle.classList.remove("active");
+    });
+}
+
+const customColor = (elem) => {
+    removeActiveCircleColor();
+    strokeColor = elem.value;
+}
+
+function penSizeChange(pensize){
+    ctx.lineWidth = pensize;
+}
+
+function clearAll(){
+    ctx.clearRect(0, 0, canvasHeight, canvasWidth)
+    SaveCanvasImage();
+    RedrawCanvasImage();
+    pathArray = [];
+    index = -1;
+}
+
+function undoCurrent(){
+    if( index <= 0){
+        clearAll();
+    }else{
+        index -= 1;
+        pathArray.pop();
+        ctx.putImageData(pathArray[index], 0, 0);     
+    }
+    SaveCanvasImage();
 }
