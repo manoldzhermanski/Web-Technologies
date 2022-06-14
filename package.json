@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/manoldzhermanski/Web-Technologies#readme",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
+=======
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
     "express": "^4.18.1",
     "joi": "^17.6.0",
     "jsdom": "^19.0.0",

@@ -91,10 +91,28 @@ main {
     background-color: black;
 }
 
+<<<<<<< HEAD
 .drawing-tools a img{
     width: 20px;
 }
 
+=======
+.drawing-tools a img {
+    width: 20px;
+}
+
+.pencil, .eraser, .undo {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 14px;
+    width: 14px;
+    margin: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
 .drawing-colors {
     border: 1px solid black;
     margin: 1.5px;
@@ -110,6 +128,7 @@ main {
 
 }
 
+<<<<<<< HEAD
 .editPage {
     border: 1px solid black;
     margin: 1.5px;
@@ -143,6 +162,8 @@ main {
     align-items: center;
 }
 
+=======
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
 .color-circle {
     border: 1px solid black;
     border-radius: 5px;
@@ -152,6 +173,7 @@ main {
     padding: 5px;
 }
 
+<<<<<<< HEAD
 .clear {
     border: 1px solid black;
     margin: 1.5px;
@@ -163,6 +185,8 @@ main {
     border-radius: 7px;
 }
 
+=======
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
 .color-circle:nth-child(1) {
     background-color: white;
 }
@@ -239,7 +263,11 @@ main {
     width: 600px;
     position: relative;
     top: 14%;
+<<<<<<< HEAD
     right: 51%;
+=======
+    right: 31%;
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
 }
 
 #canvas {

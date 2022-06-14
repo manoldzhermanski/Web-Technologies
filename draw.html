@@ -20,8 +20,17 @@
         <div id="drawing-area" class="drawing-area">
             <div id="tools" class="tools">
                 <div id="drawing-tools" class="drawing-tools">
+<<<<<<< HEAD
                     <input type="file" id="image_input" accept="image/png, image"">                    <i id="eraserTool" class="eraser"></i>
                     <a  href="#" id="save" onclick="SaveImage()">
+=======
+                    <i id="pencilTool" class="pencil"></i>
+                    <i id="eraserTool" class="eraser"></i>
+                    <a class="selected" href="#" id="open" onclick="OpenImge()">
+                        <img src="media/drawing-icons/open-icon.png">
+                    </a>
+                    <a  href="#" id="save" onclick="SaveImge()">
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
                         <img src="media/drawing-icons/save-icon.png">
                     </a>
                     <a  href="#" id="brush" onclick="ChangeTool('brush')">
@@ -42,9 +51,13 @@
                     <a  href="#" id="polygon" onclick="ChangeTool('polygon')">
                         <img src="media/drawing-icons/polygon-icon.png">
                     </a>
+<<<<<<< HEAD
                     <a  href="#" id="eraser" onclick="ChangeTool('eraser')">
                         <img src="media/drawing-icons/eraser.png">
                     </a>
+=======
+                    <i id="btnUndo" class="undo"></i>
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
                 </div>
                 <div id="drawing-colors" class="drawing-colors">
                     <div class="color-circle" data-color="white" onclick="selectColor(this)"></div>
@@ -62,6 +75,7 @@
                     <input type="color" name="cuscolor" id="cuscolor" value="#ff0000" onchange="customColor(this)">
                     <label for="cuscolor">Edit colors</label>
                 </div>
+<<<<<<< HEAD
                 <div id="editPage" class="editPage">
                     <a  href="#" id="undo" onclick="undoCurrent()">
                         <img src="media/drawing-icons/undo.png">
@@ -81,12 +95,23 @@
                     <input name="pictureName" />
                     <button type="submit">Save</button>
                 </form>
+=======
+            </div>
+            <div id="pen-size" class="pen-size">
+                <input type="range" name="pen-size" id="pen-range" value="5" step="5" min="5" max="20" onchange="penSizeChange(this.value)">
+                <label for="pen-size"><i class="fa fa-pencil"></i>Pen size</label>
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
             </div>
             <div id="draw">
                 <canvas id="canvas" ></canvas>
             </div>
         </div>        
     </main>
+<<<<<<< HEAD
+=======
+
+    <script src="js/draw2.js"></script>
+>>>>>>> e3564b2d954fc6a4199f163430727385dd500430
 </body>
 
 </html>
