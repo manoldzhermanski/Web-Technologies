@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+    <link rel="stylesheet" href="style/register.css">
+    <link rel="stylesheet" href="style/modal.css">
+    <script type="module" src="register.js"></script>
+</head>
+
+<body>
+    <section class="root">
+        <form class="container">
+
+            <header>
+                <div class="headerElements">
+                    <h1>Register</h1>
+                </div>
+            </header>
+
+            <main>
+
+                <div class="userInput">
+                    <input id="username" class="inputData" type="text" width=200 placeholder="username"></li>
+                    <input id="email" class="inputData" type="text" width=200 placeholder="email"> </li>
+                    <input id="password" class="inputData" type="password" width=200 placeholder="password"></li>
+                    <input id="confirm-password" class="inputData" type="password" width=200
+                        placeholder="confirm password"></li>
+                </div>
+
+
+                <div id="dialog-background" class="modal-background" hidden></div>
+                <div id="dialog" class="modal" hidden>
+                    <h2 id="modal-title" class="modal-header"></h2>
+                    <p id="modal-msg"></p>
+                    <div class="modal-footer">
+                        <button id="close-list-btn">Close list</button>
+                    </div>
+                </div>
+
+            </main>
+
+            <footer>
+                <input type="button" value="Create" id="createUserBtn">
+            </footer>
+        </form>
+        <section class="doodle">
+            <img src="media/doodle.png" class="doodle">
+        </section>
+    </section>
+
+</body>
+
+</html>

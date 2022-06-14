@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/modal.css">
+    <script type="module" src="login.js"></script>
+    <title>Login</title>
+</head>
+
+<body>
+
+    <section class="root">
+        <form class="container" id="loginForm">
+
+            <header>
+                <div class="headerElements">
+                    <h1>Log in</h1>
+                </div>
+            </header>
+
+            <main>
+
+                <div class="userInput">
+                    <input id="username" type="text" width=200 placeholder="username"> </li>
+                    <input id="password" type="password" width=200 placeholder="password"></li>
+                </div>
+
+                <div class="button">
+                    <input id="submitBtn" type="submit" value="Submit">
+                </div>
+            </main>
+
+            <footer>
+                <input type="button" onclick="location.href='register.html';" value="Create account" id="createBtn">
+            </footer>
+
+            <div id="dialog-background" class="modal-background" hidden></div>
+            <div id="dialog" class="modal" hidden>
+                <h2 id="modal-title" class="modal-header"></h2>
+                <p id="modal-msg"></p>
+                <div class="modal-footer">
+                    <button id="close-list-btn">Close list</button>
+                </div>
+            </div>
+        </form>
+
+        <section class="doodle">
+            <img src="media/doodle.png" class="doodle">
+        </section>
+
+    </section>
+</body>
+
+</html>

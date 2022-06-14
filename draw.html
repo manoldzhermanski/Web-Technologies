@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Start Drawing</title>
+    <link rel="stylesheet" href="style/draw.css">
+    <link rel="stylesheet" href="font-awesome\fontawesome-free-6.1.1-web\css\all.css">
+    <script src="js/drawing.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <section id="header-wrapper">
+            <a href="index.html">
+                <h1 id="slogan">Cloud Paint</h1>
+            </a>
+        </section>
+    </header>
+    <main>
+        <div id="drawing-area" class="drawing-area">
+            <div id="tools" class="tools">
+                <div id="drawing-tools" class="drawing-tools">
+                    <input type="file" id="image_input" accept="image/png, image"">                    <i id="eraserTool" class="eraser"></i>
+                    <a  href="#" id="save" onclick="SaveImage()">
+                        <img src="media/drawing-icons/save-icon.png">
+                    </a>
+                    <a  href="#" id="brush" onclick="ChangeTool('brush')">
+                        <img src="media/drawing-icons/brush-icon.png">
+                    </a>
+                    <a  href="#" id="line" onclick="ChangeTool('line')">
+                        <img src="media/drawing-icons/line-icon.png">
+                    </a>
+                    <a  href="#" id="rectangle" onclick="ChangeTool('rectangle')">
+                        <img src="media/drawing-icons/rectangle-icon.png">
+                    </a>
+                    <a  href="#" id="circle" onclick="ChangeTool('circle')">
+                        <img src="media/drawing-icons/circle-icon.png">
+                    </a>
+                    <a  href="#" id="ellipse" onclick="ChangeTool('ellipse')">
+                        <img src="media/drawing-icons/ellipse-icon.png">
+                    </a>
+                    <a  href="#" id="polygon" onclick="ChangeTool('polygon')">
+                        <img src="media/drawing-icons/polygon-icon.png">
+                    </a>
+                    <a  href="#" id="eraser" onclick="ChangeTool('eraser')">
+                        <img src="media/drawing-icons/eraser.png">
+                    </a>
+                </div>
+                <div id="drawing-colors" class="drawing-colors">
+                    <div class="color-circle" data-color="white" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="black" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="red" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="green" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="orange" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="yellow" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="blue" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="purple" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="pink" onclick="selectColor(this)"></div>
+                    <div class="color-circle" data-color="brown" onclick="selectColor(this)"></div>
+                </div>
+                <div id="customColor" class="custamColor">
+                    <input type="color" name="cuscolor" id="cuscolor" value="#ff0000" onchange="customColor(this)">
+                    <label for="cuscolor">Edit colors</label>
+                </div>
+                <div id="editPage" class="editPage">
+                    <a  href="#" id="undo" onclick="undoCurrent()">
+                        <img src="media/drawing-icons/undo.png">
+                    </a>
+                    <a  href="#" id="redo" onclick="redoCurrent()">
+                        <img src="media/drawing-icons/redo.png">
+                    </a>
+                </div>
+                <div class="clear" onclick="clearAll()"> clear </div>
+            </div>
+            <div id="pen-size" class="pen-size">
+                <input type="range" name="line_Witdh" id="pen-range" value="2"  min="2" max="10" onchange="penSizeChange(this.value)">
+                <label for="pen-range"></i>Pen size</label>
+            </div>
+            <div>
+                <form id="saveForm">
+                    <input name="pictureName" />
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+            <div id="draw">
+                <canvas id="canvas" ></canvas>
+            </div>
+        </div>        
+    </main>
+</body>
+
+</html>
