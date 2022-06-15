@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Picture = require("./pictureSchema");
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -14,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   pictures: {
-      type: Array
+      type: [Picture.schema]
   }
 });
 

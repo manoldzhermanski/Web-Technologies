@@ -1,5 +1,5 @@
-const onSubmit = () => {
-
+const onSubmit = (e) => {
+    e.preventDefault();
     const username = document.getElementById("username");
     const password = document.getElementById("password");
     
@@ -13,6 +13,7 @@ const onSubmit = () => {
                 console.log(user.username);
                 console.log(userInput);
                 if (passwordInput === user.password){
+                    localStorage.setItem('username', user.username)
                     location.href='draw.html';
                 } else {
                     toggleModal(true, "Invalid password.");
@@ -80,5 +81,5 @@ closeBtn.addEventListener("click", (event) => {
     toggleModal(false);
 });
 
-const createBtn = document.getElementById("submitBtn");
-createBtn.addEventListener("click", onSubmit);
+const createBtn = document.getElementById("loginForm");
+createBtn.addEventListener("submit", onSubmit);
