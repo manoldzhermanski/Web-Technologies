@@ -32,10 +32,25 @@ app.get("/users", async (request, response) => {
   }
 });
 
-app.get("/users/:username", async (request, response) => {
-  const username = req.body.username;
-  const users = await User.find({});
-  const user = users.find(user => user.username == username);
+
+app.get('/login/:username', async (request, response) => {
+  const username = request.params.username;
+  console.log(username);
+
+  if (!username) {
+      return response.status(400).json({ error: "Invalid username." });
+  }
+
+  let session=request.session;
+  session.userid=request.body.username;
+  console.log(request.session)
+
+  const user = await (await User.find({})).filter(user => user.username == username);
+
+  if (user.length == 0) {
+      return response.status(404).send("User not found.");
+  }
+
   try {
     response.send(user);
   } catch (error) {
@@ -44,15 +59,36 @@ app.get("/users/:username", async (request, response) => {
 });
 
 app.post('/register', async (req, res) => {
-  console.log(req.body);
-      user = new User({
-          username: req.body.username,
-          email: req.body.email,
-          password: req.body.password,
-          pictures: req.body.pictures
-      });
-      await user.save();
-      res.send(user);
+  const existingUser = await User.find({}).where('username').equals(req.body.username);
+  if (existingUser.length != 0) {
+      return res.status(409).json({ error: "Conflict. User with this username already exists." });
+  }
+
+  let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+  let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  let emailRegex = new RegExp("[^\s@]+@[^\s@]+\.[^\s@]+");
+
+  if (mediumRegex.test(req.body.password) === false & strongRegex.test(req.body.password) === false) {
+      return res.status(400).send("Weak password");
+  }
+
+  if (emailRegex.test(req.body.email) === false) {
+    return res.status(400).send("Invalid email");
+  }
+
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    pictures: req.body.pictures
+  });
+
+  await user.save();
+  try {
+    res.status(201).send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 app.get('/images/:username', async (req, res) => {
