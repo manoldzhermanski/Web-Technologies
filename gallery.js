@@ -1,6 +1,6 @@
 const pictureTemplate = document.getElementById("pictureTemplate");
 const picturesContainer = document.getElementById("picturesContainer");
-
+const username = document.getElementById("username");
 const fetchImages = async () => {
   const username = localStorage.getItem("username");
   const images = await (
@@ -31,6 +31,7 @@ const addImageToPage = (image) => {
 
   if(loggedIn) {
     populateImages();
+    username.innerHTML = localStorage.getItem('username');
   } else {
     location.href = "login.html"
   }
