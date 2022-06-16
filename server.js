@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
 const connectDb = require("./DBConnection.js");
 const User = require("./models/models.js");
 const app = express();
@@ -67,10 +68,9 @@ app.get("/users/:username", async (request, response) => {
 });
 
 app.post("/register", async (req, res) => {
-  const existingUser = await User.find({})
-    .where("username")
-    .equals(req.body.username);
-  if (existingUser.length != 0) {
+  const { email, username, password } = req.body;
+  const existingUser = await User.findOne({ username });
+  if (existingUser) {
     return res
       .status(409)
       .json({ error: "Conflict. User with this username already exists." });
@@ -85,26 +85,28 @@ app.post("/register", async (req, res) => {
   let emailRegex = new RegExp("[^s@]+@[^s@]+.[^s@]+");
 
   if (
-    (mediumRegex.test(req.body.password) === false) &
-    (strongRegex.test(req.body.password) === false)
+    (mediumRegex.test(password) === false) &
+    (strongRegex.test(password) === false)
   ) {
     return res.status(400).send("Weak password");
   }
 
-  if (emailRegex.test(req.body.email) === false) {
+  if (emailRegex.test(email) === false) {
     return res.status(400).send("Invalid email");
   }
 
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   const user = new User({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    pictures: req.body.pictures,
+    username,
+    email,
+    password: hashedPassword,
+    pictures: [],
   });
 
   await user.save();
   try {
-    res.status(201).send(user);
+    res.sendStatus(201);
   } catch (error) {
     res.status(500).send(error);
   }
