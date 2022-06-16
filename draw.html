@@ -76,6 +76,12 @@
                 <input type="range" name="line_Witdh" id="pen-range" value="2"  min="2" max="10" onchange="penSizeChange(this.value)">
                 <label for="pen-range"></i>Pen size</label>
             </div>
+            <div>
+                <form id="saveForm">
+                    <input name="pictureName" />
+                    <button type="submit">Save</button>
+                </form>
+            </div>
             <div id="draw">
                 <canvas id="canvas" ></canvas>
             </div>
