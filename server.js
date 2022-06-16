@@ -1,11 +1,21 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const connectDb = require("./DBConnection.js");
 const User = require("./models/models.js");
 const app = express();
 const cors = require("cors");
 const Picture = require("./models/pictureSchema.js");
+
+const privateKey = "secret-key";
+const generateToken = (userId) => {
+  return new Promise((resolve, reject) => {
+    jwt.sign({ id: userId }, privateKey, (err, token) => {
+      if (err) reject(err);
+      else resolve(token);
+    });
+  });
+};
 
 app.use(
   cors({
@@ -25,34 +35,23 @@ connectDb()
   })
   .catch((error) => console.error(`Database connection error: ${error}`));
 
-app.get("/users", async (request, response) => {
-  const users = await User.find({});
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
 
-  try {
-    response.send(users);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
+  if (!username) return res.status(401).json({ error: "Invalid username." });
 
-app.get("/login/:username", async (request, response) => {
-  const username = request.params.username;
-  console.log(username);
-
-  if (!username) {
-    return response.status(400).json({ error: "Invalid username." });
+  const user = await User.findOne({ username });
+  if (!user) {
+    return res.status(401).send({error: "User not found."});
   }
 
-  let session = request.session;
-  session.userid = request.body.username;
-  console.log(request.session);
+  const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-  const user = await (
-    await User.find({})
-  ).filter((user) => user.username == username);
-
-  if (user.length == 0) {
-    return response.status(404).send("User not found.");
+  if (isPasswordCorrect) {
+    const token = await generateToken(user._id);
+    res.send({token});
+  } else {
+    res.status(401).send({error: "Wrong password."});
   }
 });
 
@@ -111,6 +110,7 @@ app.post("/register", async (req, res) => {
     res.status(500).send(error);
   }
 });
+
 app.get("/images/:id", async (req, res) => {
   const image = await Picture.findOne({ _id: req.params.id });
 
