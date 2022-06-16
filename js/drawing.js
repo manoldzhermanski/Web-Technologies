@@ -373,6 +373,7 @@ saveForm.addEventListener("submit", (e) => {
 
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
+  headers.append("Authorization", localStorage.getItem("access_token"));
 
   fetch("http://localhost:3002/images", {
     method: "POST",

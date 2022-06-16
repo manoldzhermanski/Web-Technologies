@@ -25,6 +25,26 @@ app.use(
 
 app.use(express.json());
 
+const authMiddleware = async (req, res, next) => {
+  const accessToken = req.header("Authorization");
+  const userId = await new Promise((resolve, reject) => {
+    jwt.verify(accessToken, privateKey, (err, decoded) => {
+      if (err) reject(err);
+
+      resolve(decoded.id);
+    });
+  });
+
+  const user = await User.findOne({ _id: userId });
+
+  if (!user) {
+    return res.sendStatus(401);
+  }
+
+  res.locals.user = user;
+  next();
+};
+
 connectDb()
   .then(() => {
     console.log("Database connection successful");
@@ -42,27 +62,16 @@ app.post("/login", async (req, res) => {
 
   const user = await User.findOne({ username });
   if (!user) {
-    return res.status(401).send({error: "User not found."});
+    return res.status(401).send({ error: "User not found." });
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
   if (isPasswordCorrect) {
     const token = await generateToken(user._id);
-    res.send({token});
+    res.send({ token });
   } else {
-    res.status(401).send({error: "Wrong password."});
-  }
-});
-
-app.get("/users/:username", async (request, response) => {
-  const username = req.body.username;
-  const users = await User.find({});
-  const user = users.find((user) => user.username == username);
-  try {
-    response.send(user);
-  } catch (error) {
-    response.status(500).send(error);
+    res.status(401).send({ error: "Wrong password." });
   }
 });
 
@@ -129,26 +138,20 @@ app.post("/register", async (req, res) => {
   res.send(user);
 });
 
-app.get("/user/:username/images", async (req, res) => {
-  const username = req.params.username;
-  const user = await User.findOne({ username });
-
-  res.send(user.pictures);
+app.get("/images", authMiddleware, async (req, res) => {
+  res.send(res.locals.user.pictures);
 });
 
-app.delete("/user/:username/images/:pictureId", async (req, res) => {
-  const user = await User.findOne({ username: req.params.username });
+app.delete("/images/:pictureId", authMiddleware, async (req, res) => {
+  const user = res.locals.user;
   await user.updateOne({ $pull: { pictures: { _id: req.params.pictureId } } });
   await user.save();
 
   res.sendStatus(204);
 });
 
-app.post("/images", async (req, res) => {
-  const username = req.body.username;
-  const user = await User.findOne({ username });
-
-  if (!user) res.sendStatus(401);
+app.post("/images", authMiddleware, async (req, res) => {
+  const user = res.locals.user;
 
   const imageData = req.body.data;
 

@@ -2,9 +2,12 @@ const pictureTemplate = document.getElementById("pictureTemplate");
 const picturesContainer = document.getElementById("picturesContainer");
 const username = document.getElementById("username");
 const fetchImages = async () => {
-  const username = localStorage.getItem("username");
+  const headers = new Headers();
+  headers.append("Authorization", localStorage.getItem("access_token"));
   const images = await (
-    await fetch(`http://localhost:3002/user/${username}/images`)
+    await fetch(`http://localhost:3002/images`, {
+      headers,
+    })
   ).json();
 
   return images;
@@ -37,8 +40,10 @@ const addImageToPage = (image) => {
 };
 
 const deleteImage = async (imageId) => {
-  const username = localStorage.getItem("username");
-  await fetch(`http://localhost:3002/user/${username}/images/${imageId}`, {
+  const headers = new Headers();
+  headers.append("Authorization", localStorage.getItem("access_token"));
+  await fetch(`http://localhost:3002/images/${imageId}`, {
+    headers,
     method: "DELETE",
   });
 
