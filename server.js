@@ -126,6 +126,11 @@ app.get("/images/:id", async (req, res) => {
   res.send(image);
 });
 
+app.get("/user", authMiddleware, (req, res) => {
+  const user = res.locals.user;
+  res.send({ username: user.username, email: user.email });
+});
+
 app.post("/register", async (req, res) => {
   console.log(req.body);
   user = new User({
@@ -135,7 +140,7 @@ app.post("/register", async (req, res) => {
     pictures: req.body.pictures,
   });
   await user.save();
-  res.send(user);
+  res.sendStatus(204);
 });
 
 app.get("/images", authMiddleware, async (req, res) => {

@@ -50,12 +50,24 @@ const deleteImage = async (imageId) => {
   populateImages();
 };
 
+const getUserData = async () => {
+  const headers = new Headers();
+  headers.append("Authorization", localStorage.getItem("access_token"));
+
+  const userData = await (
+    await fetch("http://localhost:3002/user", { headers })
+  ).json();
+
+  return userData;
+};
+
 (async () => {
-  const loggedIn = !!localStorage.getItem("username");
+  const loggedIn = !!localStorage.getItem("access_token");
 
   if (loggedIn) {
+    const userData = await getUserData();
     populateImages();
-    username.innerHTML = localStorage.getItem("username");
+    username.innerHTML = userData.username;
   } else {
     location.href = "login.html";
   }
