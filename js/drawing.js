@@ -327,7 +327,8 @@ function clearAll() {
   index = -1;
 }
 
-function undoCurrent() {
+
+undo.addEventListener("click", ()=>{
   if (index <= 0) {
     clearAll();
   } else {
@@ -336,7 +337,7 @@ function undoCurrent() {
     ctx.putImageData(pathArray[index], 0, 0);
   }
   SaveCanvasImage();
-}
+})
 
 imageInput.addEventListener("change", (e) => {
   if (e.target.files) {
