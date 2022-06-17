@@ -129,7 +129,7 @@ main {
     width: 20px;
 }
 
-#undo, #redo {
+#undo {
     border: 1px solid black;
     background-color: rgb(233, 175, 175);
     border-radius: 5px;
