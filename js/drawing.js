@@ -1,5 +1,3 @@
-const { start } = require("repl");
-
 const colorCircle = document.querySelectorAll(".color-circle");
 const imageInput = document.getElementById("image_input");
 const saveForm = document.getElementById("saveForm");
