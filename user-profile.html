@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="user-profile.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-</head>
+    </head>
 
 <body>
     <header>
@@ -23,6 +23,7 @@
         <section class="navbar">
             <nav>
                 <ul>
+                    <li><a href="#" id="logout">Logout</a></li>
                     <li><a href="#">Start Drawing</a></li>
                 </ul>
             </nav>
@@ -35,54 +36,25 @@
                     <img src="media/anonymous.jpg">
                     <div id="user-information">
                     <p class="static-text">Name: </p>
-                    <p>username</p>
-                    <p class="static-text">E-mail: </p>
-                    <p>username@email.com</p>
+                    <p id="username"></p>
                 </div>
 
             </div>
         </section>
-        <section class="pictures-section">
-            
-            <div class="user-edited-prctures">
-                <div class="edited-picture-wrapper">
-                   <div class="edited-picture">
-                    <img src="media/doodle2.png">
-                    <p class="title"> -Title here- </p>
-                    <p class="date">07-05-2022</p>
-                    <button>Edit</button>
-                </div> 
-                </div>
-                <div class="edited-picture-wrapper">
-                    <div class="edited-picture">
-                     <img src="media/doodle2.png">
-                     <p class="title"> -Title here- </p>
-                     <p class="date">07-05-2022</p>
-                     <button>Edit</button>
-                 </div> 
-                 </div><div class="edited-picture-wrapper">
-                    <div class="edited-picture">
-                     <img src="media/doodle2.png">
-                     <p class="title"> -Title here- </p>
-                     <p class="date">07-05-2022</p>
-                     <button>Edit</button>
-                 </div> 
-                 </div><div class="edited-picture-wrapper">
-                    <div class="edited-picture">
-                     <img src="media/doodle2.png">
-                     <p class="title"> -Title here- </p>
-                     <p class="date">07-05-2022</p>
-                     <button>Edit</button>
-                 </div> 
-                 </div><div class="edited-picture-wrapper">
-                    <div class="edited-picture">
-                     <img src="media/doodle2.png">
-                     <p class="title"> -Title here- </p>
-                     <p class="date">07-05-2022</p>
-                     <button>Edit</button>
-                 </div> 
-                 </div>
-            </div>
+       <section class="pictures-section">
+        <div id="picturesContainer"></div>
+        <template id="pictureTemplate">
+          <div class="picture">
+            <img class="picture-img" />
+            <p class="picture-title"></p>
+            <p class="date">07-05-2022</p>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </div>
+        </template>
+      
+        <script type="module" src="gallery.js"></script>
+        <script type="module" src="logout.js"></script>
         </section>
     </main>
 

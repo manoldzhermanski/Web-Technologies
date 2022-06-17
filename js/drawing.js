@@ -1,6 +1,7 @@
 const colorCircle = document.querySelectorAll(".color-circle");
 const imageInput = document.getElementById("image_input");
 const saveForm = document.getElementById("saveForm");
+const pictureNameInput = document.getElementById("pictureName");
 
 let canvas;
 let ctx;
@@ -361,7 +362,8 @@ imageInput.addEventListener("change", (e) => {
   }
 });
 
-saveForm.getElementsByTagName("input")[0].disabled = !localStorage.getItem('username')
+saveForm.getElementsByTagName("input")[0].disabled =
+  !localStorage.getItem("username");
 
 saveForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -370,7 +372,8 @@ saveForm.addEventListener("submit", (e) => {
   const dataUrl = canvas.toDataURL();
 
   const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
+  headers.append("Content-Type", "application/json");
+  headers.append("Authorization", localStorage.getItem("access_token"));
 
   fetch("http://localhost:3002/images", {
     method: "POST",
@@ -380,5 +383,28 @@ saveForm.addEventListener("submit", (e) => {
       name: pictureName,
       data: dataUrl,
     }),
-  }).then(() => console.log("saved")).catch(() => console.log('failed'));
+  })
+    .then(() => console.log("saved"))
+    .catch(() => console.log("failed"));
 });
+
+const loadImage = async (imageId) => {
+  const imageData = await (
+    await fetch(`http://localhost:3002/images/${imageId}`)
+  ).json();
+
+  const image = new Image();
+  image.src = imageData.data;
+
+  setTimeout(() => {
+    ctx.drawImage(image, 0, 0);
+  }, 0);
+
+  pictureNameInput.value = imageData.name;
+};
+
+const params = new URLSearchParams(location.search.substring(1));
+const imageId = params.get("image");
+if (imageId) {
+  loadImage(imageId);
+}

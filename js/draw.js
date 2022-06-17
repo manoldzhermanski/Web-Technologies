@@ -238,5 +238,4 @@ function text() {
 		
 		textarea.style.display = 'block';
 	};
-	
 };

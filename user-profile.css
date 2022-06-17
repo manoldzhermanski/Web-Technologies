@@ -112,18 +112,20 @@ h2, h3, p, span {
     width: 100%;
 }
 
-.edited-picture-wrapper{
-    border-style: solid;
+#picturesContainer{
+    display: flex;
+    align-items: self-start;   
+}
+
+.picture{
+    margin: 5%;border-style: solid;
     border-width: thin;
     width: 30%;
     background-color: white;
     margin: 1.5%;
+    padding-right: 0.5%;
 }
-
-.edited-picture{
-    margin: 5%;
-}
-.edited-picture img{
+.picture img{
     width: 100%;
     height: auto;
     background-color: white;
@@ -131,7 +133,7 @@ h2, h3, p, span {
     margin: 1%;
     border-radius: 1%;
 }
-.edited-picture button{
+.picture button{
     height: 57%;
     width: 55%;
     padding: 4%;
@@ -141,7 +143,7 @@ h2, h3, p, span {
     border: #ceb5a7 solid 1px;
 }
 
-.edited-picture p{
+.picture p{
     align-self: center;
     text-align: center;
 }
