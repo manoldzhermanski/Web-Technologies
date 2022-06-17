@@ -230,6 +230,9 @@ function AddBrushPoint(x, y) {
 }
 
 function DrawBrush() {
+  ctx.strokeStyle = strokeColor;
+  ctx.fillStyle = fillColor;
+
   ctx.lineCap = "round";
 
   ctx.lineTo(brushXPoints, brushYPoints);
