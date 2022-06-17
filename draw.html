@@ -11,10 +11,15 @@
 <body>
     <header>
         <section id="header-wrapper">
-            <a href="index.html">
                 <h1 id="slogan">Cloud Paint</h1>
-            </a>
+                <div id="user-profile">
+                
+                   <img src="media/avatar-fococlipping-standard.png"> 
+                  <a href="user-profile.html"> <p>My profile</p>
+                </a>
+        </div>
         </section>
+        
     </header>
     <main>
         <div id="drawing-area" class="drawing-area">
@@ -73,8 +78,8 @@
                 <div class="clear" onclick="clearAll()"> clear </div>
             </div>
             <div id="pen-size" class="pen-size">
+                <label for="pen-range" ></i>Pen size</label>
                 <input type="range" name="line_Witdh" id="pen-range" value="2"  min="2" max="10" onchange="penSizeChange(this.value)">
-                <label for="pen-range"></i>Pen size</label>
             </div>
             <div>
                 <form id="saveForm">
