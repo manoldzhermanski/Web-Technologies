@@ -1,3 +1,5 @@
+const { start } = require("repl");
+
 const colorCircle = document.querySelectorAll(".color-circle");
 const imageInput = document.getElementById("image_input");
 const saveForm = document.getElementById("saveForm");
@@ -83,6 +85,7 @@ function ChangeTool(toolClicked) {
   document.getElementById("circle").className = "";
   document.getElementById("ellipse").className = "";
   document.getElementById("polygon").className = "";
+ // document.getElementById("star").className = "";
 
   document.getElementById(toolClicked).className = "selected";
   currentTool = toolClicked;
@@ -174,6 +177,40 @@ function getPolygon() {
   ctx.closePath();
 }
 
+function star() {
+  ctx.beginPath();
+  ctx.moveTo(mousedown.x, mousedown.y);
+  for (var i=0; i < 6; i++) {
+      var r = (i%2 == 0)? 0 : 1;
+      var a = Math.PI * i/5;
+      ctx.lineTo(mousedown.x + r*Math.sin(a), mousedown.y + r*Math.cos(a));
+  };
+  ctx.closePath();
+  ctx.fillStyle=strokeColor;
+  ctx.fill();
+  ctx.strokeStyle='transparent';
+  ctx.lineWidth= line_Width;
+  ctx.stroke()
+}
+
+/*function star(centerX, centerY, points, outer, inner, fill, stroke, line) {
+  // define the star
+  ctx.beginPath();
+  ctx.moveTo(centerX, centerY+outer);
+  for (var i=0; i < 2*points+1; i++) {
+      var r = (i%2 == 0)? outer : inner;
+      var a = Math.PI * i/points;
+      ctx.lineTo(centerX + r*Math.sin(a), centerY + r*Math.cos(a));
+  };
+  ctx.closePath();
+  // draw
+  ctx.fillStyle=fill;
+  ctx.fill();
+  ctx.strokeStyle=stroke;
+  ctx.lineWidth=line;
+  ctx.stroke()
+}*/
+
 function drawRubberbandShape(loc) {
   ctx.strokeStyle = strokeColor;
   ctx.fillStyle = fillColor;
@@ -217,6 +254,10 @@ function drawRubberbandShape(loc) {
   } else if (currentTool === "polygon") {
     getPolygon();
     ctx.stroke();
+  }
+  else if(currentTool === "star"){
+    star();
+    //star(225,75,16,50,20,'coral','transparent',0);
   }
 }
 
