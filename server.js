@@ -104,6 +104,7 @@ app.post("/register", async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
+  console.log(hashedPassword);
 
   const user = new User({
     username,
@@ -129,18 +130,6 @@ app.get("/images/:id", async (req, res) => {
 app.get("/user", authMiddleware, (req, res) => {
   const user = res.locals.user;
   res.send({ username: user.username, email: user.email });
-});
-
-app.post("/register", async (req, res) => {
-  console.log(req.body);
-  user = new User({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    pictures: req.body.pictures,
-  });
-  await user.save();
-  res.sendStatus(204);
 });
 
 app.get("/images", authMiddleware, async (req, res) => {

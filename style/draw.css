@@ -21,8 +21,9 @@ header #header-wrapper {
 }
 
 #slogan {
-	margin-top: 0.5em;
 	text-align: center;
+    font-family: cursive;
+    font-size: 400%;
 }
 
 main {
@@ -35,10 +36,10 @@ main {
     border: 1px solid black;
     margin-top: 10px;
     height: 572px;
-    width: 700px;
+    width: 740px;
     background-color: white;
     position: static;
-
+    padding: 3%;
     display: flex;
     flex-direction: row;
 }
@@ -46,7 +47,7 @@ main {
 #tools {
     box-sizing: border-box;
     border: 1px solid black;
-    width: 70px;
+    width: 127px;
     height: 560px;
     margin-top: 6px;
     margin-left: 5px;
@@ -216,34 +217,74 @@ main {
 
 #cuscolor {
     cursor: pointer;
+    margin: 5%;
+    margin-left: 30%;
 }
 
 #pen-size {
-    border: 1px solid black;
-    height: 70px;
-    width: 400px;
-    margin-top: 6px;
-    
+    margin-top: 3.5%;
+    margin-left: 2%;
+}
+
+#pen-size label{
+    margin-left: 40%;
 }
 
 #pen-range {
     height: 30px;
     width: 200px;
     margin: 10px;
+    margin-bottom: unset;
+    margin-top: unset;
 }
 
 #draw {
     border: 1px solid black;
-
     height: 480px;
     width: 600px;
     position: relative;
     top: 14%;
-    right: 51%;
+    right: 59.2%;
 }
 
 #canvas {
     border: 1px solid black;
     height: 480px;
     width: 600px;
+}
+
+#saveForm{
+    margin: 5%;
+    display: flex;
+    margin-left: 74%;
+    margin-top: 20%;
+}
+
+#saveForm button{
+    font-size: 100%;
+    color: white;
+    max-width: 10rem;
+    border: transparent;
+    border-radius: 10%;
+    background: #E9AFAF;
+    margin-left: 3%;
+}
+
+#user-profile{
+    display: table;
+    width: 30%;
+    margin-left: 40%;
+}
+#user-profile img{
+    width: 20%;
+    margin-left: 80%;
+}
+
+#user-profile p{
+    margin: unset;
+    padding: unset;
+    margin-left: 80%;
+    font-family: cursive;
+    color: brown;
+    text-decoration: underline;
 }
