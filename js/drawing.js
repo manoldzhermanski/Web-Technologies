@@ -27,9 +27,8 @@ let index = -1;
 
 let usingBrush = false;
 
-let brushXPoints = new Array();
-let brushYPoints = new Array();
-let brushDownPos = new Array();
+let brushXPoints;
+let brushYPoints;
 
 // size data used to create rubber band shapes
 class ShapeBoundingBox {
@@ -266,29 +265,21 @@ function UpdateRubberbandOnMove(loc) {
   drawRubberbandShape(loc);
 }
 
-function AddBrushPoint(x, y, mouseDown) {
-  brushXPoints.push(x);
-  brushYPoints.push(y);
-
-  brushDownPos.push(mouseDown);
+function AddBrushPoint(x, y) {
+  brushXPoints = x;
+  brushYPoints = y;
 }
 
 function DrawBrush() {
-  for (let i = 1; i < brushXPoints.length; i++) {
-    ctx.beginPath();
-    if (brushDownPos[i]) {
-      ctx.moveTo(brushXPoints[i - 1], brushYPoints[i - 1]);
-    } else {
-      ctx.moveTo(brushXPoints[i] - 1, brushYPoints[i]);
-    }
-    ctx.lineTo(brushXPoints[i], brushYPoints[i]);
-    ctx.closePath();
-    ctx.stroke();
-  }
+  ctx.lineCap = "round";
+
+  ctx.lineTo(brushXPoints, brushYPoints);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(brushXPoints, brushYPoints);
 }
 
 function ReactToMouseDown(e) {
-  canvas.style.cursor = "crosshair";
   loc = GetMousePosition(e.clientX, e.clientY);
 
   SaveCanvasImage();
@@ -304,15 +295,13 @@ function ReactToMouseDown(e) {
 }
 
 function ReactToMouseMove(e) {
-  canvas.style.cursor = "crosshair";
   loc = GetMousePosition(e.clientX, e.clientY);
 
   if (currentTool === "brush" && dragging && usingBrush) {
-    if (loc.x > 0 && loc.x < canvasWidth && loc.y > 0 && loc.y < canvasHeight) {
-      AddBrushPoint(loc.x, loc.y, true);
-    }
-    RedrawCanvasImage();
+    AddBrushPoint(loc.x, loc.y);
     DrawBrush();
+    SaveCanvasImage();
+    RedrawCanvasImage();
   } else {
     if (dragging) {
       RedrawCanvasImage();
@@ -328,6 +317,7 @@ function ReactToMouseUp(e) {
   UpdateRubberbandOnMove(loc);
   dragging = false;
   usingBrush = false;
+  ctx.beginPath();
 }
 
 function SaveImage() {
