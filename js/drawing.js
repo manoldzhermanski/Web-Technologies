@@ -106,7 +106,6 @@ function SaveCanvasImage() {
 
 function RedrawCanvasImage() {
   ctx.putImageData(pathArray[index], 0, 0);
-  //ctx.putImageData(savedImageData,0,0);
 }
 
 function UpdateRubberbandSizeData(loc) {
@@ -236,7 +235,6 @@ function drawRubberbandShape(loc) {
     ctx.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2);
     ctx.stroke();
   } else if (currentTool === "ellipse") {
-    // ctx.ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle)
     let radiusX = shapeBoundingBox.width / 2;
     let radiusY = shapeBoundingBox.height / 2;
     ctx.beginPath();
@@ -266,11 +264,17 @@ function UpdateRubberbandOnMove(loc) {
 }
 
 function AddBrushPoint(x, y) {
+
   brushXPoints = x;
   brushYPoints = y;
+
 }
 
 function DrawBrush() {
+
+  ctx.strokeStyle = strokeColor;
+  ctx.fillStyle = fillColor;
+
   ctx.lineCap = "round";
 
   ctx.lineTo(brushXPoints, brushYPoints);
@@ -365,7 +369,8 @@ function clearAll() {
   index = -1;
 }
 
-function undoCurrent() {
+
+undo.addEventListener("click", ()=>{
   if (index <= 0) {
     clearAll();
   } else {
@@ -374,7 +379,7 @@ function undoCurrent() {
     ctx.putImageData(pathArray[index], 0, 0);
   }
   SaveCanvasImage();
-}
+})
 
 imageInput.addEventListener("change", (e) => {
   if (e.target.files) {
